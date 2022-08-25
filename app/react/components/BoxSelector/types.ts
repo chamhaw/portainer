@@ -13,4 +13,5 @@ export interface BoxSelectorOption<T extends Value> extends IconProps {
   tooltip?: () => string;
   feature?: FeatureId;
   hide?: boolean;
+  iconType?: 'raw' | 'badge' | 'logo';
 }

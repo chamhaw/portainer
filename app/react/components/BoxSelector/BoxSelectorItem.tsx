@@ -5,9 +5,12 @@ import { Icon } from '@/react/components/Icon';
 
 import './BoxSelectorItem.css';
 
+import { BadgeIcon } from '@@/BadgeIcon';
+
 import { BoxSelectorOption, Value } from './types';
 import { LimitedToBeIndicator } from './LimitedToBeIndicator';
 import { BoxOption } from './BoxOption';
+import { LogoIcon } from './LogoIcon';
 
 type Props<T extends Value> = {
   option: BoxSelectorOption<T>;
@@ -17,6 +20,7 @@ type Props<T extends Value> = {
   onSelect(value: T, limitedToBE: boolean): void;
   isSelected(value: T): boolean;
   type?: 'radio' | 'checkbox';
+  slim?: boolean;
 };
 
 export function BoxSelectorItem<T extends Value>({
@@ -27,6 +31,7 @@ export function BoxSelectorItem<T extends Value>({
   tooltip,
   type = 'radio',
   isSelected,
+  slim = false,
 }: Props<T>) {
   const limitedToBE = isLimitedToBE(option.feature);
 
@@ -52,20 +57,50 @@ export function BoxSelectorItem<T extends Value>({
             featureId={option.feature}
           />
         )}
-        <div className={clsx({ 'opacity-30': limitedToBE })}>
-          <div className="boxselector_img_container">
-            {!!option.icon && (
-              <Icon
-                icon={option.icon}
-                feather={option.featherIcon}
-                className="boxselector_icon !flex items-center"
-              />
-            )}
+        <div
+          className={clsx('flex gap-2', {
+            'opacity-30': limitedToBE,
+            'flex-col justify-between h-full': !slim,
+            'items-center slim': slim,
+          })}
+        >
+          <div
+            className={clsx('boxselector_img_container flex items-center', {
+              'flex-1': !slim,
+            })}
+          >
+            {renderIcon()}
           </div>
-          <div className="boxselector_header">{option.label}</div>
-          <p className="box-selector-item-description">{option.description}</p>
+          <div>
+            <div className="boxselector_header">{option.label}</div>
+            <p className="box-selector-item-description">
+              {option.description}
+            </p>
+          </div>
         </div>
       </>
     </BoxOption>
   );
+
+  function renderIcon() {
+    if (!option.icon) {
+      return null;
+    }
+
+    if (option.iconType === 'badge') {
+      return <BadgeIcon icon={option.icon} featherIcon={option.featherIcon} />;
+    }
+
+    if (option.iconType === 'logo') {
+      return <LogoIcon icon={option.icon} featherIcon={option.featherIcon} />;
+    }
+
+    return (
+      <Icon
+        icon={option.icon}
+        feather={option.featherIcon}
+        className="boxselector_icon !flex items-center"
+      />
+    );
+  }
 }

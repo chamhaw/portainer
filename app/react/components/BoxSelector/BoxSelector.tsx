@@ -22,11 +22,13 @@ type Union<T extends Value> = IsMultiProps<T> | SingleProps<T>;
 export type Props<T extends Value> = Union<T> & {
   radioName: string;
   options: BoxSelectorOption<T>[];
+  slim?: boolean;
 };
 
 export function BoxSelector<T extends Value>({
   radioName,
   options,
+  slim = false,
   ...props
 }: Props<T>) {
   return (
@@ -48,6 +50,7 @@ export function BoxSelector<T extends Value>({
                 tooltip={option.tooltip && option.tooltip()}
                 type={props.isMulti ? 'checkbox' : 'radio'}
                 isSelected={isSelected}
+                slim={slim}
               />
             ))}
         </div>

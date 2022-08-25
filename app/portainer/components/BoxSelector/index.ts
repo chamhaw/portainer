@@ -13,6 +13,7 @@ const BoxSelectorReact = react2angular(BoxSelector, [
   'onChange',
   'options',
   'radioName',
+  'slim',
 ]);
 
 export const boxSelectorModule = angular

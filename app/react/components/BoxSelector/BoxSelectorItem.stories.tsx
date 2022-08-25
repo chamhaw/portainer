@@ -1,7 +1,10 @@
 import { Meta } from '@storybook/react';
+import { ReactNode } from 'react';
+import { Briefcase } from 'react-feather';
 
 import { init as initFeatureService } from '@/react/portainer/feature-flags/feature-flags.service';
 import { Edition, FeatureId } from '@/react/portainer/feature-flags/enums';
+import Docker from '@/assets/ico/vendor/docker.svg?c';
 
 import { BoxSelectorItem } from './BoxSelectorItem';
 import { BoxSelectorOption } from './types';
@@ -74,4 +77,37 @@ export function SelectedLimitedFeatureItem() {
   initFeatureService(Edition.CE);
 
   return <Template feature={FeatureId.ACTIVITY_AUDIT} selected />;
+}
+
+function IconTemplate({
+  icon,
+  iconType,
+}: {
+  icon: ReactNode;
+  iconType: 'raw' | 'logo' | 'badge';
+}) {
+  return (
+    <BoxSelectorItem
+      onSelect={() => {}}
+      option={{
+        description: 'description',
+        icon,
+        iconType,
+        label: 'label',
+        id: 'id',
+        value: 'value',
+      }}
+      isSelected={() => false}
+      radioName="radio"
+      slim
+    />
+  );
+}
+
+export function LogoItem() {
+  return <IconTemplate icon={Docker} iconType="logo" />;
+}
+
+export function BadgeItem() {
+  return <IconTemplate icon={Briefcase} iconType="badge" />;
 }

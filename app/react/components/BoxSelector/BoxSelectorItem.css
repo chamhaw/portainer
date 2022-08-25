@@ -97,17 +97,19 @@
 }
 
 .boxselector_img_container {
-  width: 100%;
   margin-bottom: 20px;
   text-align: left;
 
-  line-height: 90px;
   margin-bottom: 0;
 }
 
 .boxselector_icon,
 .boxselector_icon img {
   font-size: 90px;
+}
+
+.slim .boxselector_icon {
+  font-size: 56px;
 }
 
 .boxselector_icon > svg {
@@ -120,11 +122,6 @@
 
 .boxselector_content {
   padding-left: 20px;
-}
-
-.boxselector_img_container {
-  line-height: 90px;
-  margin-bottom: 0;
 }
 
 .box-selector-item p {
