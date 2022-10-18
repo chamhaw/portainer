@@ -2,7 +2,7 @@ import type { FeatureId } from '@/react/portainer/feature-flags/enums';
 
 import { IconProps } from '@@/Icon';
 
-export type Value = number | string;
+export type Value = number | string | boolean;
 
 export interface BoxSelectorOption<T extends Value> extends IconProps {
   readonly id: string;

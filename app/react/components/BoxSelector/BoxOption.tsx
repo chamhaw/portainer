@@ -43,7 +43,7 @@ export function BoxOption<T extends Value>({
         name={radioName}
         id={option.id}
         checked={isSelected(option.value)}
-        value={option.value}
+        value={option.value.toString()}
         disabled={disabled}
         onChange={() => onSelect(option.value)}
       />
