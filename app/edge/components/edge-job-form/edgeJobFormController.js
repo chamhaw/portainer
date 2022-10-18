@@ -1,9 +1,15 @@
 import _ from 'lodash-es';
 import moment from 'moment';
 
+import { cronMethodOptions } from './cron-method-options';
+
 export class EdgeJobFormController {
   /* @ngInject */
-  constructor() {
+  constructor($scope) {
+    this.$scope = $scope;
+
+    this.cronMethods = cronMethodOptions;
+
     this.state = {
       formValidationError: '',
     };
@@ -38,6 +44,13 @@ export class EdgeJobFormController {
     this.editorUpdate = this.editorUpdate.bind(this);
     this.associateEndpoint = this.associateEndpoint.bind(this);
     this.dissociateEndpoint = this.dissociateEndpoint.bind(this);
+    this.onCronMethodChange = this.onCronMethodChange.bind(this);
+  }
+
+  onCronMethodChange(value) {
+    this.$scope.$evalAsync(() => {
+      this.formValues.cronMethod = value;
+    });
   }
 
   onChangeModel(model) {
