@@ -149,8 +149,16 @@ class KubernetesCreateApplicationController {
     this.checkIngressesToUpdate = this.checkIngressesToUpdate.bind(this);
     this.confirmUpdateApplicationAsync = this.confirmUpdateApplicationAsync.bind(this);
     this.onDataAccessPolicyChange = this.onDataAccessPolicyChange.bind(this);
+    this.onChangeDeploymentType = this.onChangeDeploymentType.bind(this);
+    this.supportGlobalDeployment = this.supportGlobalDeployment.bind(this);
   }
   /* #endregion */
+
+  onChangeDeploymentType(value) {
+    this.$scope.$evalAsync(() => {
+      this.formValues.DeploymentType = value;
+    });
+  }
 
   onChangeFileContent(value) {
     if (this.stackFileContent.replace(/(\r\n|\n|\r)/gm, '') !== value.replace(/(\r\n|\n|\r)/gm, '')) {
@@ -624,6 +632,7 @@ class KubernetesCreateApplicationController {
     if (hasFolders && (hasRWOOnly || isIsolated)) {
       return false;
     }
+
     return true;
   }
 

@@ -823,62 +823,12 @@
                   </div>
 
                   <!-- deployment options -->
-                  <div class="form-group">
-                    <div class="col-sm-12">
-                      <div class="boxselector_wrapper">
-                        <div>
-                          <input
-                            type="radio"
-                            id="deployment_replicated"
-                            ng-value="ctrl.ApplicationDeploymentTypes.REPLICATED"
-                            ng-model="ctrl.formValues.DeploymentType"
-                            data-cy="k8sAppCreate-replicatedDeploymentButton"
-                          />
-                          <label for="deployment_replicated">
-                            <div class="boxselector_header">
-                              <pr-icon icon="'sliders'" feather="true"></pr-icon>
-                              Replicated
-                            </div>
-                            <p>Run one or multiple instances of this container</p>
-                          </label>
-                        </div>
-                        <div ng-if="!ctrl.supportGlobalDeployment()">
-                          <input type="radio" id="deployment_global" disabled />
-                          <label
-                            for="deployment_global"
-                            tooltip-append-to-body="true"
-                            tooltip-placement="bottom"
-                            tooltip-class="portainer-tooltip"
-                            uib-tooltip="The storage or access policy used for persisted folders cannot be used with this option"
-                          >
-                            <div class="boxselector_header">
-                              <pr-icon icon="'svg-cubes'"></pr-icon>
-                              Global
-                            </div>
-                            <p>Application will be deployed as a DaemonSet with an instance on each node of the cluster</p>
-                          </label>
-                        </div>
-                        <div ng-if="ctrl.supportGlobalDeployment()">
-                          <input
-                            type="radio"
-                            id="deployment_global"
-                            ng-value="ctrl.ApplicationDeploymentTypes.GLOBAL"
-                            ng-model="ctrl.formValues.DeploymentType"
-                            ng-click="ctrl.unselectAutoScaler()"
-                            data-cy="k8sAppCreate-globalDeployButton"
-                          />
-                          <label for="deployment_global">
-                            <div class="boxselector_header">
-                              <pr-icon icon="'svg-cubes'"></pr-icon>
-                              Global
-                            </div>
-                            <p>Application will be deployed as a DaemonSet with an instance on each node of the sdfh</p>
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- !deployment options -->
+                  <kube-application-deployment-type-selector
+                    value="ctrl.formValues.DeploymentType"
+                    on-change="(ctrl.onChangeDeploymentType)"
+                    support-global-deployment="ctrl.supportGlobalDeployment()"
+                    radio-name="'deploymentType'"
+                  ></kube-application-deployment-type-selector>
 
                   <!-- replica count -->
                   <div class="form-group" ng-if="ctrl.formValues.DeploymentType === ctrl.ApplicationDeploymentTypes.REPLICATED">
