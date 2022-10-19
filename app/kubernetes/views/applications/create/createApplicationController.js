@@ -34,6 +34,7 @@ import KubernetesNamespaceHelper from 'Kubernetes/helpers/namespaceHelper';
 import { KubernetesNodeHelper } from 'Kubernetes/node/helper';
 import { updateIngress, getIngresses } from '@/react/kubernetes/ingresses/service';
 import { confirmUpdateAppIngress } from '@/portainer/services/modal.service/prompt';
+import { placementOptions } from './placementTypes';
 
 class KubernetesCreateApplicationController {
   /* #region  CONSTRUCTOR */
@@ -84,6 +85,8 @@ class KubernetesCreateApplicationController {
     this.ApplicationConfigurationFormValueOverridenKeyTypes = KubernetesApplicationConfigurationFormValueOverridenKeyTypes;
     this.ServiceTypes = KubernetesServiceTypes;
     this.KubernetesDeploymentTypes = KubernetesDeploymentTypes;
+
+    this.placementOptions = placementOptions;
 
     this.state = {
       appType: this.KubernetesDeploymentTypes.APPLICATION_FORM,
@@ -151,8 +154,15 @@ class KubernetesCreateApplicationController {
     this.onDataAccessPolicyChange = this.onDataAccessPolicyChange.bind(this);
     this.onChangeDeploymentType = this.onChangeDeploymentType.bind(this);
     this.supportGlobalDeployment = this.supportGlobalDeployment.bind(this);
+    this.onChangePlacementType = this.onChangePlacementType.bind(this);
   }
   /* #endregion */
+
+  onChangePlacementType(value) {
+    this.$scope.$evalAsync(() => {
+      this.formValues.PlacementType = value;
+    });
+  }
 
   onChangeDeploymentType(value) {
     this.$scope.$evalAsync(() => {
