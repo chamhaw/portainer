@@ -3,10 +3,9 @@ import clsx from 'clsx';
 import { isLimitedToBE } from '@/react/portainer/feature-flags/feature-flags.service';
 import { Icon } from '@/react/components/Icon';
 
-import './BoxSelectorItem.css';
-
 import { BadgeIcon } from '@@/BadgeIcon';
 
+import styles from './BoxSelectorItem.module.css';
 import { BoxSelectorOption, Value } from './types';
 import { LimitedToBeIndicator } from './LimitedToBeIndicator';
 import { BoxOption } from './BoxOption';
@@ -38,9 +37,9 @@ export function BoxSelectorItem<T extends Value>({
   const beIndicatorTooltipId = `box-selector-item-${radioName}-${option.id}-limited`;
   return (
     <BoxOption
-      className={clsx({
-        business: limitedToBE,
-        limited: limitedToBE,
+      className={clsx(styles.boxSelectorItem, {
+        [styles.business]: limitedToBE,
+        [styles.limited]: limitedToBE,
       })}
       radioName={radioName}
       option={option}
@@ -65,17 +64,15 @@ export function BoxSelectorItem<T extends Value>({
           })}
         >
           <div
-            className={clsx('boxselector_img_container flex items-center', {
+            className={clsx(styles.imageContainer, 'flex items-center', {
               'flex-1': !slim,
             })}
           >
             {renderIcon()}
           </div>
           <div>
-            <div className="boxselector_header">{option.label}</div>
-            <p className="box-selector-item-description">
-              {option.description}
-            </p>
+            <div className={styles.header}>{option.label}</div>
+            <p>{option.description}</p>
           </div>
         </div>
       </>
@@ -99,7 +96,7 @@ export function BoxSelectorItem<T extends Value>({
       <Icon
         icon={option.icon}
         feather={option.featherIcon}
-        className="boxselector_icon !flex items-center"
+        className={clsx(styles.icon, '!flex items-center')}
       />
     );
   }

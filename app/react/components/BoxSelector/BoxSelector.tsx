@@ -1,6 +1,3 @@
-import clsx from 'clsx';
-
-import './BoxSelector.css';
 import styles from './BoxSelector.module.css';
 import { BoxSelectorItem } from './BoxSelectorItem';
 import { BoxSelectorOption, Value } from './types';
@@ -34,10 +31,7 @@ export function BoxSelector<T extends Value>({
   return (
     <div className="form-group">
       <div className="col-sm-12">
-        <div
-          className={clsx('boxselector_wrapper', styles.root)}
-          role="radiogroup"
-        >
+        <div className={styles.root} role="radiogroup">
           {options
             .filter((option) => !option.hide)
             .map((option) => (

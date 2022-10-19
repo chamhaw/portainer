@@ -2,8 +2,7 @@ import clsx from 'clsx';
 import { PropsWithChildren } from 'react';
 import ReactTooltip from 'react-tooltip';
 
-import './BoxSelectorItem.css';
-
+import styles from './BoxOption.module.css';
 import { BoxSelectorOption, Value } from './types';
 
 interface Props<T extends Value> {
@@ -31,7 +30,7 @@ export function BoxOption<T extends Value>({
   const tooltipId = `box-option-${radioName}-${option.id}`;
   return (
     <div
-      className={clsx('box-selector-item', className)}
+      className={clsx(styles.root, className)}
       data-tip
       data-for={tooltipId}
       tooltip-append-to-body="true"
