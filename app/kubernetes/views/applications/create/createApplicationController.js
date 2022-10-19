@@ -148,6 +148,7 @@ class KubernetesCreateApplicationController {
     this.onServicePublishChange = this.onServicePublishChange.bind(this);
     this.checkIngressesToUpdate = this.checkIngressesToUpdate.bind(this);
     this.confirmUpdateApplicationAsync = this.confirmUpdateApplicationAsync.bind(this);
+    this.onDataAccessPolicyChange = this.onDataAccessPolicyChange.bind(this);
   }
   /* #endregion */
 
@@ -156,6 +157,13 @@ class KubernetesCreateApplicationController {
       this.state.isEditorDirty = true;
       this.stackFileContent = value;
     }
+  }
+
+  onDataAccessPolicyChange(value) {
+    this.$scope.$evalAsync(() => {
+      this.formValues.DataAccessPolicy = value;
+      this.resetDeploymentType();
+    });
   }
 
   async updateApplicationViaWebEditor() {

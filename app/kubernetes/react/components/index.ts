@@ -6,6 +6,7 @@ import { NamespacesSelector } from '@/react/kubernetes/cluster/RegistryAccessVie
 import { StorageAccessModeSelector } from '@/react/kubernetes/cluster/ConfigureView/StorageAccessModeSelector';
 import { NamespaceAccessUsersSelector } from '@/react/kubernetes/namespaces/AccessView/NamespaceAccessUsersSelector';
 import { CreateNamespaceRegistriesSelector } from '@/react/kubernetes/namespaces/CreateView/CreateNamespaceRegistriesSelector';
+import { KubeApplicationAccessPolicySelector } from '@/react/kubernetes/applications/CreateView/KubeApplicationAccessPolicySelector';
 
 export const componentsModule = angular
   .module('portainer.kubernetes.react.components', [])
@@ -62,5 +63,14 @@ export const componentsModule = angular
       'onChange',
       'options',
       'value',
+    ])
+  )
+  .component(
+    'kubeApplicationAccessPolicySelector',
+    r2a(KubeApplicationAccessPolicySelector, [
+      'value',
+      'onChange',
+      'isEdit',
+      'persistedFoldersUseExistingVolumes',
     ])
   ).name;
