@@ -304,13 +304,7 @@ angular
       var initEndpoint = {
         name: 'portainer.init.endpoint',
         url: '/endpoint',
-        views: {
-          'content@': {
-            templateUrl: './views/init/endpoint/initEndpoint.html',
-            controller: 'InitEndpointController',
-            controllerAs: 'ctrl',
-          },
-        },
+        redirectTo: 'portainer.wizard',
       };
 
       var initAdmin = {
