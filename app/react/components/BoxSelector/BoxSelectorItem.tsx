@@ -5,26 +5,28 @@ import { Icon } from '@/react/components/Icon';
 
 import './BoxSelectorItem.css';
 
-import { BoxSelectorOption } from './types';
+import { BoxSelectorOption, Value } from './types';
 import { LimitedToBeIndicator } from './LimitedToBeIndicator';
 import { BoxOption } from './BoxOption';
 
-interface Props<T extends number | string> {
-  radioName: string;
+type Props<T extends Value> = {
   option: BoxSelectorOption<T>;
-  onChange(value: T, limitedToBE: boolean): void;
-  selectedValue: T;
+  radioName: string;
   disabled?: boolean;
   tooltip?: string;
-}
+  onSelect(value: T, limitedToBE: boolean): void;
+  isSelected(value: T): boolean;
+  type?: 'radio' | 'checkbox';
+};
 
-export function BoxSelectorItem<T extends number | string>({
+export function BoxSelectorItem<T extends Value>({
   radioName,
   option,
-  onChange,
-  selectedValue,
+  onSelect = () => {},
   disabled,
   tooltip,
+  type = 'radio',
+  isSelected,
 }: Props<T>) {
   const limitedToBE = isLimitedToBE(option.feature);
 
@@ -37,10 +39,11 @@ export function BoxSelectorItem<T extends number | string>({
       })}
       radioName={radioName}
       option={option}
-      selectedValue={selectedValue}
+      isSelected={isSelected}
       disabled={disabled}
-      onChange={(value) => onChange(value, limitedToBE)}
+      onSelect={(value) => onSelect(value, limitedToBE)}
       tooltip={tooltip}
+      type={type}
     >
       <>
         {limitedToBE && (

@@ -4,24 +4,24 @@ import ReactTooltip from 'react-tooltip';
 
 import './BoxSelectorItem.css';
 
-import { BoxSelectorOption } from './types';
+import { BoxSelectorOption, Value } from './types';
 
-interface Props<T extends number | string> {
+interface Props<T extends Value> {
   radioName: string;
   option: BoxSelectorOption<T>;
-  onChange?(value: T): void;
-  selectedValue: T;
+  onSelect?(value: T): void;
+  isSelected(value: T): boolean;
   disabled?: boolean;
   tooltip?: string;
   className?: string;
   type?: 'radio' | 'checkbox';
 }
 
-export function BoxOption<T extends number | string>({
+export function BoxOption<T extends Value>({
   radioName,
   option,
-  onChange = () => {},
-  selectedValue,
+  onSelect = () => {},
+  isSelected,
   disabled,
   tooltip,
   className,
@@ -42,10 +42,10 @@ export function BoxOption<T extends number | string>({
         type={type}
         name={radioName}
         id={option.id}
-        checked={option.value === selectedValue}
+        checked={isSelected(option.value)}
         value={option.value}
         disabled={disabled}
-        onChange={() => onChange(option.value)}
+        onChange={() => onSelect(option.value)}
       />
 
       <label htmlFor={option.id} data-cy={`${radioName}_${option.value}`}>

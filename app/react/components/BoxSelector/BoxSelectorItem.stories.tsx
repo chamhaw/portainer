@@ -27,7 +27,7 @@ interface ExampleProps {
 }
 
 function Template({
-  selected,
+  selected = false,
   description = 'description',
   icon,
   label = 'label',
@@ -45,10 +45,10 @@ function Template({
   return (
     <div className="boxselector_wrapper">
       <BoxSelectorItem
-        onChange={() => {}}
+        onSelect={() => {}}
         option={option}
         radioName="radio"
-        selectedValue={selected ? option.value : 0}
+        isSelected={() => selected}
       />
     </div>
   );
