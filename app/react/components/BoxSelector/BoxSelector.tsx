@@ -21,7 +21,7 @@ type Union<T extends Value> = IsMultiProps<T> | SingleProps<T>;
 
 export type Props<T extends Value> = Union<T> & {
   radioName: string;
-  options: BoxSelectorOption<T>[];
+  options: ReadonlyArray<BoxSelectorOption<T>> | Array<BoxSelectorOption<T>>;
   slim?: boolean;
 };
 

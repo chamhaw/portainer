@@ -5,13 +5,13 @@ import { IconProps } from '@@/Icon';
 export type Value = number | string;
 
 export interface BoxSelectorOption<T extends Value> extends IconProps {
-  id: string;
-  label: string;
-  description: string;
-  value: T;
-  disabled?: () => boolean;
-  tooltip?: () => string;
-  feature?: FeatureId;
-  hide?: boolean;
-  iconType?: 'raw' | 'badge' | 'logo';
+  readonly id: string;
+  readonly label: string;
+  readonly description: string;
+  readonly value: T;
+  readonly disabled?: () => boolean;
+  readonly tooltip?: () => string;
+  readonly feature?: FeatureId;
+  readonly hide?: boolean;
+  readonly iconType?: 'raw' | 'badge' | 'logo';
 }

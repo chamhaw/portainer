@@ -65,7 +65,7 @@ export function EnvironmentTypeSelectView() {
     trackEvent('endpoint-wizard-endpoint-select', {
       category: 'portainer',
       metadata: {
-        environment: steps.map((step) => step.title).join('/'),
+        environment: steps.map((step) => step.label).join('/'),
       },
     });
 
