@@ -6,8 +6,6 @@
 .boxselector_wrapper .boxselector_header,
 .box-selector-item .boxselector_header {
   font-size: 18px;
-  margin-right: 20px;
-  margin-bottom: 5px;
   font-weight: bold;
   user-select: none;
   color: var(--text-boxselector-header);

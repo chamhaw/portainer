@@ -9,7 +9,7 @@ export type Value = number | string | boolean;
 export interface BoxSelectorOption<T extends Value> extends IconProps {
   readonly id: string;
   readonly label: string;
-  readonly description: ReactNode;
+  readonly description?: ReactNode;
   readonly value: T;
   readonly disabled?: () => boolean;
   readonly tooltip?: () => string;
