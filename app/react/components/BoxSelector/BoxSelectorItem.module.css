@@ -3,10 +3,13 @@
 }
 
 .box-selector-item .header {
+  @apply text-black;
+  @apply th-dark:text-white;
+  @apply th-highcontrast:text-white;
+
   font-size: 18px;
   font-weight: bold;
   user-select: none;
-  color: var(--text-boxselector-header);
 }
 
 .header .fa,

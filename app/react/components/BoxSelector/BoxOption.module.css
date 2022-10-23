@@ -6,6 +6,7 @@
   @apply border border-solid;
   @apply bg-gray-2 border-gray-5 text-black;
   @apply th-dark:bg-gray-iron-10 th-dark:border-gray-neutral-8 th-dark:text-white;
+  @apply th-highcontrast:text-white;
 
   font-weight: normal;
   font-size: 12px;
@@ -22,7 +23,9 @@
 
 /* not disabled */
 .root input:not(:disabled) ~ label {
-  background-color: var(--bg-boxselector-color);
+  @apply bg-gray-2;
+  @apply th-dark:bg-gray-iron-10;
+  @apply th-highcontrast:bg-black;
 
   box-shadow: none;
   cursor: pointer;
