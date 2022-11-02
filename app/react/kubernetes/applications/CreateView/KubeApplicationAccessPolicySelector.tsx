@@ -3,7 +3,7 @@ import { Box } from 'react-feather';
 import { KubernetesApplicationDataAccessPolicies } from '@/kubernetes/models/application/models';
 import cubes from '@/assets/ico/cubes.svg?c';
 
-import { BoxSelector } from '@@/BoxSelector';
+import { BoxSelector, BoxSelectorOption } from '@@/BoxSelector';
 
 interface Props {
   isEdit: boolean;
@@ -34,7 +34,7 @@ export function KubeApplicationAccessPolicySelector({
 function getOptions(
   isEdit: boolean,
   persistedFoldersUseExistingVolumes: boolean
-) {
+): ReadonlyArray<BoxSelectorOption<number>> {
   return [
     {
       value: KubernetesApplicationDataAccessPolicies.ISOLATED,

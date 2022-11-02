@@ -3,7 +3,11 @@ import { Sliders } from 'react-feather';
 import { KubernetesApplicationDeploymentTypes } from '@/kubernetes/models/application/models';
 import cubes from '@/assets/ico/cubes.svg?c';
 
-export function getDeploymentOptions(supportGlobalDeployment: boolean) {
+import { BoxSelectorOption } from '@@/BoxSelector';
+
+export function getDeploymentOptions(
+  supportGlobalDeployment: boolean
+): ReadonlyArray<BoxSelectorOption<number>> {
   return [
     {
       id: 'deployment_replicated',

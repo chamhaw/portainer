@@ -1,7 +1,11 @@
 import { Share2, Sliders } from 'react-feather';
 
-export function getOptions(hasNetworks: boolean) {
-  const options = [
+import { BoxSelectorOption } from '@@/BoxSelector';
+
+export function getOptions(
+  hasNetworks: boolean
+): ReadonlyArray<BoxSelectorOption<string>> {
+  return [
     {
       id: 'network_config',
       icon: Sliders,
@@ -20,6 +24,4 @@ export function getOptions(hasNetworks: boolean) {
       disabled: () => !hasNetworks,
     },
   ] as const;
-
-  return options;
 }

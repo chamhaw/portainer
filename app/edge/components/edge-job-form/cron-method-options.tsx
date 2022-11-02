@@ -2,7 +2,7 @@ import { Calendar, Edit } from 'react-feather';
 
 import { BoxSelectorOption } from '@@/BoxSelector';
 
-export const cronMethodOptions: Array<BoxSelectorOption<string>> = [
+export const cronMethodOptions: ReadonlyArray<BoxSelectorOption<string>> = [
   {
     id: 'config_basic',
     value: 'basic',
@@ -19,4 +19,4 @@ export const cronMethodOptions: Array<BoxSelectorOption<string>> = [
     label: 'Advanced configuration',
     description: 'Write your own cron rule',
   },
-];
+] as const;
