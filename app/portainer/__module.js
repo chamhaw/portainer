@@ -301,12 +301,6 @@ angular
         },
       };
 
-      var initEndpoint = {
-        name: 'portainer.init.endpoint',
-        url: '/endpoint',
-        redirectTo: 'portainer.wizard',
-      };
-
       var initAdmin = {
         name: 'portainer.init.admin',
         url: '/admin',
@@ -434,7 +428,6 @@ angular
       $stateRegistryProvider.register(groupCreation);
       $stateRegistryProvider.register(home);
       $stateRegistryProvider.register(init);
-      $stateRegistryProvider.register(initEndpoint);
       $stateRegistryProvider.register(initAdmin);
       $stateRegistryProvider.register(registries);
       $stateRegistryProvider.register(registry);
