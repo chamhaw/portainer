@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { PropsWithChildren } from 'react';
-import { Check } from 'react-feather';
 import ReactTooltip from 'react-tooltip';
+import { Icon } from 'react-feather';
 
 import styles from './BoxOption.module.css';
 import { BoxSelectorOption, Value } from './types';
@@ -15,6 +15,7 @@ interface Props<T extends Value> {
   tooltip?: string;
   className?: string;
   type?: 'radio' | 'checkbox';
+  checkIcon: Icon;
 }
 
 export function BoxOption<T extends Value>({
@@ -27,6 +28,7 @@ export function BoxOption<T extends Value>({
   className,
   type = 'radio',
   children,
+  checkIcon: Check,
 }: PropsWithChildren<Props<T>>) {
   const tooltipId = `box-option-${radioName}-${option.id}`;
   const selected = isSelected(option.value);

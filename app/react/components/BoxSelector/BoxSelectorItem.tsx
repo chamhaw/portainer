@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { Icon as ReactFeatherComponentType, Check } from 'react-feather';
 
 import { isLimitedToBE } from '@/react/portainer/feature-flags/feature-flags.service';
 import { Icon } from '@/react/components/Icon';
@@ -20,6 +21,7 @@ type Props<T extends Value> = {
   isSelected(value: T): boolean;
   type?: 'radio' | 'checkbox';
   slim?: boolean;
+  checkIcon?: ReactFeatherComponentType;
 };
 
 export function BoxSelectorItem<T extends Value>({
@@ -31,6 +33,7 @@ export function BoxSelectorItem<T extends Value>({
   type = 'radio',
   isSelected,
   slim = false,
+  checkIcon = Check,
 }: Props<T>) {
   const limitedToBE = isLimitedToBE(option.feature);
 
@@ -48,6 +51,7 @@ export function BoxSelectorItem<T extends Value>({
       onSelect={(value) => onSelect(value, limitedToBE)}
       tooltip={tooltip}
       type={type}
+      checkIcon={checkIcon}
     >
       <>
         {limitedToBE && (
