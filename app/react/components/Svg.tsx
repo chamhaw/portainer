@@ -13,7 +13,6 @@ import socket from '@/assets/ico/wizard/socket.svg?c';
 import arrowsupdown from '@/assets/ico/arrows-updown.svg?c';
 import arrowright from '@/assets/ico/arrow-right-long.svg?c';
 import bomb from '@/assets/ico/bomb.svg?c';
-import checked from '@/assets/ico/checked.svg?c';
 import circlenotch from '@/assets/ico/circle-notch.svg?c';
 import clockrewind from '@/assets/ico/clock-rewind.svg?c';
 import compress from '@/assets/ico/compress.svg?c';
@@ -94,7 +93,6 @@ export const SvgIcons = {
   arrowsupdown,
   arrowright,
   bomb,
-  checked,
   circlenotch,
   clockrewind,
   compress,

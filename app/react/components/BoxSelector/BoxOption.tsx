@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import { PropsWithChildren } from 'react';
+import { Check } from 'react-feather';
 import ReactTooltip from 'react-tooltip';
 
 import styles from './BoxOption.module.css';
@@ -28,6 +29,8 @@ export function BoxOption<T extends Value>({
   children,
 }: PropsWithChildren<Props<T>>) {
   const tooltipId = `box-option-${radioName}-${option.id}`;
+  const selected = isSelected(option.value);
+
   return (
     <div
       className={clsx(styles.root, className)}
@@ -41,7 +44,7 @@ export function BoxOption<T extends Value>({
         type={type}
         name={radioName}
         id={option.id}
-        checked={isSelected(option.value)}
+        checked={selected}
         value={option.value.toString()}
         disabled={disabled}
         onChange={() => onSelect(option.value)}
@@ -49,7 +52,20 @@ export function BoxOption<T extends Value>({
 
       <label htmlFor={option.id} data-cy={`${radioName}_${option.value}`}>
         {children}
+
+        <div
+          className={clsx(
+            'absolute top-4 right-4 h-4 w-4 rounded-full border border-solid border-blue-8 text-white font-bold flex items-center justify-center',
+            {
+              'bg-white': !selected,
+              'bg-blue-8': selected,
+            }
+          )}
+        >
+          {selected && <Check className="feather" strokeWidth={3} />}
+        </div>
       </label>
+
       {tooltip && (
         <ReactTooltip
           place="bottom"
