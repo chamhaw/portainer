@@ -18,7 +18,7 @@ export function KubeApplicationAccessPolicySelector({
   value,
   onChange,
 }: Props) {
-  const options = getOptions(isEdit, persistedFoldersUseExistingVolumes);
+  const options = getOptions(value, isEdit, persistedFoldersUseExistingVolumes);
 
   return (
     <BoxSelector
@@ -32,6 +32,7 @@ export function KubeApplicationAccessPolicySelector({
 }
 
 function getOptions(
+  value: number,
   isEdit: boolean,
   persistedFoldersUseExistingVolumes: boolean
 ): ReadonlyArray<BoxSelectorOption<number>> {
@@ -48,7 +49,10 @@ function getOptions(
         isEdit || persistedFoldersUseExistingVolumes
           ? 'Changing the data access policy is not allowed'
           : '',
-      disabled: () => isEdit || persistedFoldersUseExistingVolumes,
+      disabled: () =>
+        (isEdit &&
+          value !== KubernetesApplicationDataAccessPolicies.ISOLATED) ||
+        persistedFoldersUseExistingVolumes,
     },
     {
       value: KubernetesApplicationDataAccessPolicies.SHARED,
@@ -60,7 +64,8 @@ function getOptions(
         'Application will be deployed as a Deployment with a shared storage access',
       tooltip: () =>
         isEdit ? 'Changing the data access policy is not allowed' : '',
-      disabled: () => isEdit,
+      disabled: () =>
+        isEdit && value !== KubernetesApplicationDataAccessPolicies.SHARED,
     },
   ] as const;
 }
