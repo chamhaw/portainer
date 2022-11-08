@@ -54,7 +54,6 @@ export function KubeconfigButton({ environments, envQueryParams }: Props) {
   }
 
   function isKubeconfigButtonVisible(environments: Environment[]) {
-    return true;
     if (window.location.protocol !== 'https:') {
       return false;
     }
