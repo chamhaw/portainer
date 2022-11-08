@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { confirm } from '@/portainer/services/modal.service/confirm';
-import { ModalTypeIcon } from '@/portainer/services/modal.service/utils';
+import { ModalType } from '@/portainer/services/modal.service/types';
 
 import { Datatable } from '@@/datatables';
 import { Button, ButtonGroup } from '@@/buttons';
@@ -191,7 +191,7 @@ export function IngressClassDatatable({
       if (usedControllersToDisallow.length > 0) {
         confirm({
           title: 'Disallow in-use ingress controllers?',
-          modalType: ModalTypeIcon.Warn,
+          modalType: ModalType.Warn,
           message: (
             <div>
               <p>
