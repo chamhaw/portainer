@@ -15,3 +15,8 @@ export interface EdgeDeviceTableSettings
     PaginationTableSettings,
     SettableColumnsTableSettings,
     RefreshableTableSettings {}
+
+export enum DeployType {
+  FDO = 'FDO',
+  MANUAL = 'MANUAL',
+}

@@ -5,7 +5,6 @@ import {
   confirmAsync,
   confirmDestructiveAsync,
 } from '@/portainer/services/modal.service/confirm';
-import { promptAsync } from '@/portainer/services/modal.service/prompt';
 import * as notifications from '@/portainer/services/notifications';
 import { activateDevice } from '@/portainer/hostmanagement/open-amt/open-amt.service';
 import { deleteEndpoint } from '@/react/portainer/environments/environment.service';
@@ -13,17 +12,15 @@ import { deleteEndpoint } from '@/react/portainer/environments/environment.servi
 import { Button } from '@@/buttons';
 import { Link } from '@@/Link';
 
+import { openDeployTypePrompt } from './DeployTypePrompt';
+import { DeployType } from './types';
+
 interface Props {
   selectedItems: Environment[];
   isFDOEnabled: boolean;
   isOpenAMTEnabled: boolean;
   setLoadingMessage(message: string): void;
   showWaitingRoomLink: boolean;
-}
-
-enum DeployType {
-  FDO = 'FDO',
-  MANUAL = 'MANUAL',
 }
 
 export function EdgeDevicesDatatableActions({
@@ -111,29 +108,14 @@ export function EdgeDevicesDatatableActions({
 
   async function onAddNewDeviceClick() {
     const result = isFDOEnabled
-      ? await promptAsync({
-          title: 'How would you like to add an Edge Device?',
-          inputType: 'radio',
-          inputOptions: [
-            {
-              text: 'Provision bare-metal using Intel FDO',
-              value: DeployType.FDO,
-            },
-            {
-              text: 'Deploy agent manually',
-              value: DeployType.MANUAL,
-            },
-          ],
-          buttons: {
-            confirm: {
-              label: 'Confirm',
-              className: 'btn-primary',
-            },
-          },
-        })
-      : DeployType.MANUAL;
+      ? await openDeployTypePrompt()
+      : { deployType: DeployType.MANUAL };
 
-    switch (result) {
+    if (!result) {
+      return;
+    }
+
+    switch (result.deployType) {
       case DeployType.FDO:
         router.stateService.go('portainer.endpoints.importDevice');
         break;
