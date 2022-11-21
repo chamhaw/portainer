@@ -1,5 +1,5 @@
 {
-  "name": "portainer-ci-devcontainer",
+  "name": "portainer-ce-devcontainer",
   "image": "mcr.microsoft.com/devcontainers/universal:2",
   "features": {
       "ghcr.io/devcontainers/features/go:1": {
